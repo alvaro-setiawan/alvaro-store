@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body id ="body">
+    <button onclick="berubah()">alvaro</button>
+    <button onclick="berubah1()">iphone</button>
+    <button onclick="berubah2()">17 pro max</button>
+    <p onmouseenter="berubah()" onmouseleave="berubah1()"onmousemove="berubah2()">alvaro iphone 17 promax</p>
+    <script>
+        body = document.getElementById("body")
+        berubah=()=>{
+            body.style.fontSize="50px";
+            body.style.backgroundColor="orange";
+        }
+        berubah1=()=>{
+            body.style.fontSize="30px";
+            body.style.backgroundColor="silver";
+        }
+        berubah2=()=>{
+            body.style.fontSize="20px";
+            body.style.backgroundColor="navy";
+        }
+       
+    </script>
+</body>
+    
+</body>
+</html>

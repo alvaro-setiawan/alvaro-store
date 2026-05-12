@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let barang = [
+            {nama:"laptop", harga: 50000},
+            {nama:"keyboard", harga: 10000},
+            {nama:"komputer", harga:40000},
+        ];
+        let hasil=barang.map((item)=>{
+            return`<h1>${item.nama}</h1>
+                   <h2>${item.harga}</h2>`
+        });
+        document.write(hasil);
+    </script>
+</body>
+</html>

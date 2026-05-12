@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    .card {
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 16px;
+        width: 200px;
+        box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
+    .card h2 { font-size: 16px; margin: 10px 0 5px; }
+    .card p { font-size: 13px; color: gray; }
+    .card h3 { margin: 8px 0; }
+
+    .btn-primary {
+        width: 100%;
+        padding: 8px;
+        background-color: blue;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+</style>
+<body id="body">
+    <nav style="background-color: blue; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center;">
+    <h1 style="color: white; font-size: 20px;">Jual beli iphone</h1>
+</nav>
+    <div class="container">
+        <div class="saldo" id="saldo"></div>
+        <div id="card" style="display: flex; flex-wrap: wrap; gap: 20px;"></div>
+        <div id="card"></div>
+    </div>
+    <script>
+        let saldo = 100000000;
+        function formatRupiah(amount) {
+            return new Intl.NumberFormat("id-ID", {
+                style: "currency",
+                currency: "IDR",
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0,
+            }).format(amount);
+        }
+
+        document.getElementById("saldo").innerText = `Saldo: ${formatRupiah(saldo)}`;
+
+        const products = [
+            { name: "iphone 14 pro max", description: "iphone gacor", price: 15000000, image: "download.jpg" },
+            { name: "iphone 12 pro", description: "inter 256gb", price: 25000000, image: "download.jpg" },
+            { name: "iphone 14 pro", description: "bea cukai 512gb", price: 15000000, image: "download.jpg" },
+            { name: "iphone 15 pro max", description: "ibox bekas cristiano ronaldo", price: 25000000, image: "download.jpg" },
+            { name: "iphone 16 pro max", description: "ibox bekas lionel messi", price: 25000000, image: "download.jpg" },
+        ];
+
+        const card = document.getElementById("card");
+
+        card.innerHTML = products
+            .map((product, index) => {
+                return `
+                <div class="card">
+                <img src="${product.image}">
+                <div class="card-body">
+                <h2>${product.name}</h2>
+                <p>${product.description}</p>
+                <h3 style="color: red">${formatRupiah(product.price)}</h3>
+                <button class="btn-primary beli" data-index="${index}">Beli</button>
+            </div>
+        </div>
+        `;
+            })
+            .join("");
+
+        const beli = document.querySelectorAll(".beli");
+        beli.forEach((button) => {
+            button.addEventListener("click", () => {
+                const index = button.getAttribute("data-index");
+                const product = products[index];
+                if (saldo >= product.price) {
+                    saldo -= product.price;
+                    document.getElementById("saldo").innerText = `Saldo: ${formatRupiah(saldo)}`;
+                    alert(`Anda membeli ${product.name} seharga ${formatRupiah(product.price)}. Sisa saldo: ${formatRupiah(saldo)}`);
+                } else {
+                    alert("Saldo tidak cukup untuk membeli produk ini.");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
